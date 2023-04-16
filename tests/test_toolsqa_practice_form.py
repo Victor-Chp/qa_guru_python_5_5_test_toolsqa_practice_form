@@ -1,12 +1,9 @@
 import os
-import pytest
 from selene import browser, have
-from selenium import webdriver
 
 
 def test_form_filling_submitting():
     browser.open('/automation-practice-form')
-    # browser.driver.set_window_size(1400, 960)
 
     browser.element('#firstName').set('Василий')
     browser.element('#lastName').set('Алибабаев')
