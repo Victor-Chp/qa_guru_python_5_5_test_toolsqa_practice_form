@@ -1,5 +1,5 @@
 import os
-from selene import browser, have
+from selene import browser, have, command
 
 
 def test_form_filling_submitting():
@@ -7,7 +7,6 @@ def test_form_filling_submitting():
 
     browser.element('#firstName').set('Василий')
     browser.element('#lastName').set('Алибабаев')
-    browser.element('#userEmail').set('alibabavas@gmail.com')
     browser.element('#userEmail').set('alibabavas@gmail.com')
     browser.element('[name=gender][value=Male]+label').click()
     browser.element('#userNumber').set('9093335555')
@@ -33,6 +32,18 @@ def test_form_filling_submitting():
     browser.element('#submit').press_enter()
 
     browser.element('#example-modal-sizes-title-lg').should(have.text('Thanks for submitting the form'))
+    browser.all('.table-responsive td:nth-child(2)').should(have.exact_texts(
+        'Василий Алибабаев',
+        'alibabavas@gmail.com',
+        'Male',
+        '9093335555',
+        '11 July,1980',
+        'English, Accounting',
+        'Music',
+        'account.png',
+        'проспект Революции 285 - 45',
+        'Uttar Pradesh Agra'
+    ))
 
 
     '''
